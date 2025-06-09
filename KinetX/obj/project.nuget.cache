@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+UVA2hs///E=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\KinetX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rkpra\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\communitytoolkit.mvvm.8.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

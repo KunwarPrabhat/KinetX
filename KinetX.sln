@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinetX", "KinetX\KinetX.csproj", "{42F6B319-893C-4A27-AE00-1F9191384534}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42F6B319-893C-4A27-AE00-1F9191384534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F6B319-893C-4A27-AE00-1F9191384534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F6B319-893C-4A27-AE00-1F9191384534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F6B319-893C-4A27-AE00-1F9191384534}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB908F45-C469-4FFE-A304-EC0C1F397C28}
+	EndGlobalSection
+EndGlobal
