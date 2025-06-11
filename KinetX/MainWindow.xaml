@@ -208,7 +208,7 @@
                                             <TextBlock Text="{Binding ElementName=RestitutionASlider, Path=Value, StringFormat={}{0:0.0}}" 
                                                  Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider Name="RestitutionASlider" Minimum="0" Maximum="1" Value="0.5" 
+                                        <Slider x:Name="RestitutionASlider" Minimum="0" Maximum="1" Value="0.5" 
                                                 TickFrequency="0.1" Margin="0 0 0 10"/>
 
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
@@ -216,7 +216,7 @@
                                             <TextBlock Text="{Binding ElementName=RestitutionBSlider, Path=Value, StringFormat={}{0:0.0}}" 
                                                    Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider Name="RestitutionBSlider" Minimum="0" Maximum="1" Value="0.5" 
+                                        <Slider x:Name="RestitutionBSlider" Minimum="0" Maximum="1" Value="0.5" 
                                                     TickFrequency="0.1" Margin="0 0 0 10"/>
 
                                         <!-- Velocity Inputs -->
@@ -242,12 +242,12 @@
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                             <StackPanel Margin="0 0 20 0">
                                                 <Label Content="Mass A (Kg)" Foreground="White"/>
-                                                <TextBox Name="MassA" Width="60"/>
+                                                <TextBox x:Name="MassA" Width="60"/>
                                             </StackPanel>
 
                                             <StackPanel>
                                                 <Label Content="Mass B (Kg)" Foreground="White"/>
-                                                <TextBox Name="MassB" Width="60"/>
+                                                <TextBox x:Name="MassB" Width="60"/>
                                             </StackPanel>
                                         </StackPanel>
 

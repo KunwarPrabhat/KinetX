@@ -5,15 +5,15 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using KinetX.Calculation;
 using KinetX.Collision;
+using KinetX.Objects;
+using System.Printing;
 
 namespace KinetX
 {
     public partial class MainWindow : Window
     {
         private Stopwatch stopwatch = new Stopwatch();
-
-        private List<UIElement> shapes = new List<UIElement>();
-        private List<Vector> velocities = new List<Vector>();
+        private List<(Shape visual, Body physics)> objects = new List<(Shape, Body)>();
         private bool isAnimating = false;
         public MainWindow()
         {
@@ -26,27 +26,37 @@ namespace KinetX
         {
             stopwatch.Start();
             MainCanvas.Children.Clear();
-            shapes.Clear();
-            velocities.Clear();
+            objects.Clear();
 
-            //To Read shape types
+            //It reads shape types
             string shapeA = ((ComboBoxItem)ObjectAComboBox.SelectedItem).Content.ToString();
             string shapeB = ((ComboBoxItem)ObjectBComboBox.SelectedItem).Content.ToString();
 
-            //To Read velocities
+
+            //It reads the Restitution of both the objects.
+            double restitutionA = RestitutionASlider.Value;
+            double restitutionB = RestitutionBSlider.Value;
+
+
+            //It reads mass of both the objects
+            double MassOfA = double.Parse(MassA.Text);
+            double MassOfB = double.Parse(MassB.Text);
+
+            //It reads velocities
             double ax = double.Parse(VelocityAX.Text);
             double ay = double.Parse(VelocityAY.Text);
 
             double bx = double.Parse(VelocityBX.Text);
             double by = double.Parse(VelocityBY.Text);
 
-            //Read object count 
+            //It reads object counts
             int ObjectACount = (int)ObjectACountSlider.Value;
             int ObjectBCount = (int)ObjectBCountSlider.Value;
 
+
             for (int i = 0; i < ObjectACount; i++)
             {
-                //creating shapes 
+                //for creating shapes 
                 var objA = CreateShape(shapeA);
 
                 //Random start position
@@ -55,28 +65,38 @@ namespace KinetX
                 //Adding it to canvas
                 MainCanvas.Children.Add(objA);
 
-                //Store references , crucial for animation.
-                shapes.Add(objA);
-                velocities.Add(new Vector(ax, ay));
+                //we are storing references here which is crucial for animation.
+                double centerX = Canvas.GetLeft(objA) + objA.Width / 2;
+                double centerY = Canvas.GetTop(objA) + objA.Height / 2;
+
+                var body = new Body(
+                    new Vector2D(centerX, centerY), //this is the position of the physical object.
+                    new Vector2D(ax, ay), //and this is the velocity of the physisal object.
+                    MassOfA,
+                    restitutionA
+                );
+                objects.Add((objA, body));
             }
+            //same goes for Object B as well.
             for (int i = 0; i < ObjectBCount; i++)
             {
-                //creating shapes 
                 var objB = CreateShape(shapeB);
 
-
-                //Random start position
                 RandomSpawn(objB, MainCanvas);
 
-                //Adding it to canvas
                 MainCanvas.Children.Add(objB);
 
-                //Store references , crucial for animation.
-                shapes.Add(objB);
-                velocities.Add(new Vector(bx, by));
+                double centerX = Canvas.GetLeft(objB) + objB.Width / 2;
+                double centerY = Canvas.GetTop(objB) + objB.Height / 2;
+
+                var body = new Body(
+                    new Vector2D(centerX, centerY), //this is the position of the physical object.
+                    new Vector2D(ax, ay), //and this is the velocity of the physisal object.
+                    MassOfB,
+                    restitutionB
+                );
+                objects.Add((objB, body));
             }
-
-
             StartAnimation();
         }
         private void RandomSpawn(UIElement element, Canvas canvas)
@@ -114,8 +134,8 @@ namespace KinetX
                 shape = new Rectangle();
             }
 
-            shape.Width = 50;
-            shape.Height = 50;
+            shape.Width = 60;
+            shape.Height = 60;
             Color randomColor = GenerateSoftColor();
             shape.Fill = new SolidColorBrush(randomColor);
             return shape;
@@ -153,71 +173,92 @@ namespace KinetX
         private void Animate(object sender, EventArgs e)
         {
             double rate = 5.5f;
-            double deltaTime = stopwatch.Elapsed.TotalSeconds; // how long since last frame
+            double deltaTime = stopwatch.Elapsed.TotalSeconds;
             stopwatch.Restart();
             if (!isAnimating) return;
 
-            for (int i = 0; i < shapes.Count; i++)
+            // First update all positions
+            foreach (var (shape, body) in objects)
             {
-                var shape = (Shape)shapes[i];
-                var velocity = velocities[i];
+                // Apply velocity to position
+                body.Position += body.Velocity * deltaTime * rate;
 
-                double x = Canvas.GetLeft(shape); //how far from the left edge of the canvas the shape is.
-                double y = Canvas.GetTop(shape); //how far from the top.
-
-                double newX = x + velocity.X * deltaTime * rate;
-                double newY = y + velocity.Y * deltaTime * rate;
-
-                if (newX < 0 || newX + shape.Width > MainCanvas.ActualWidth)
-                {
-                    velocity.X *= -1;
-                    newX = x + velocity.X * deltaTime * rate;
-                }
-                if (newY < 0 || newY + shape.Height > MainCanvas.ActualHeight)
-                {
-                    velocity.Y *= -1;
-                    newY = y + velocity.Y * deltaTime * rate;
-                }
-                Canvas.SetLeft(shape, newX);
-                Canvas.SetTop(shape, newY);
-                velocities[i] = velocity; //It update the new velocity
+                // Update visual position
+                Canvas.SetLeft(shape, body.Position.X - shape.Width / 2);
+                Canvas.SetTop(shape, body.Position.Y - shape.Height / 2);
             }
-            for (int i = 0;i < shapes.Count;i++)
+
+            // Then handle wall collisions
+            foreach (var (shape, body) in objects)
             {
-                for (int j = i + 1; j < shapes.Count;j++)
+                double halfWidth = shape.Width / 2;
+                double halfHeight = shape.Height / 2;
+
+                double left = body.Position.X - halfWidth;
+                double right = body.Position.X + halfWidth;
+                double top = body.Position.Y - halfHeight;
+                double bottom = body.Position.Y + halfHeight;
+
+                // Left wall collision
+                if (left < 0)
                 {
-                    var shapeA = (Shape)shapes[i];
-                    var shapeB = (Shape)shapes[j];
+                    body.Position = new Vector2D(halfWidth, body.Position.Y);
+                    body.Velocity = new Vector2D(-body.Velocity.X * body.Restitution, body.Velocity.Y);
+                    Canvas.SetLeft(shape, 0);
+                }
+                // Right wall collision
+                else if (right > MainCanvas.ActualWidth)
+                {
+                    body.Position = new Vector2D(MainCanvas.ActualWidth - halfWidth, body.Position.Y);
+                    body.Velocity = new Vector2D(-body.Velocity.X * body.Restitution, body.Velocity.Y);
+                    Canvas.SetLeft(shape, MainCanvas.ActualWidth - shape.Width);
+                }
 
-                    if(shapeA is Ellipse && shapeB is Ellipse)
+                // Top wall collision
+                if (top < 0)
+                {
+                    body.Position = new Vector2D(body.Position.X, halfHeight);
+                    body.Velocity = new Vector2D(body.Velocity.X, -body.Velocity.Y * body.Restitution);
+                    Canvas.SetTop(shape, 0);
+                }
+                // Bottom wall collision
+                else if (bottom > MainCanvas.ActualHeight)
+                {
+                    body.Position = new Vector2D(body.Position.X, MainCanvas.ActualHeight - halfHeight);
+                    body.Velocity = new Vector2D(body.Velocity.X, -body.Velocity.Y * body.Restitution);
+                    Canvas.SetTop(shape, MainCanvas.ActualHeight - shape.Height);
+                }
+            }
+
+            // Then handle object collisions
+            for (int i = 0; i < objects.Count; i++)
+            {
+                var (shapeA, bodyA) = objects[i];
+                for (int j = i + 1; j < objects.Count; j++)
+                {
+                    var (shapeB, bodyB) = objects[j];
+
+                    if (shapeA is Ellipse && shapeB is Ellipse)
                     {
-                        //getting the center points of both the circle.
-                        double ax = Canvas.GetLeft(shapeA) + shapeA.Width / 2;
-                        double ay = Canvas.GetTop(shapeA) + shapeA.Height / 2;
-                        double bx = Canvas.GetLeft(shapeB) + shapeB.Width / 2;
-                        double by = Canvas.GetTop(shapeB) + shapeB.Height / 2;
-
-                        //converting the center to vector2D for calculations.
-                        var centerA = new Vector2D(ax, ay);
-                        var centerB = new Vector2D(bx, by);
-
-                        //getting the radius of both the circle.
                         double radiusA = shapeA.Width / 2;
                         double radiusB = shapeB.Width / 2;
 
-                        var result = CollisionDetector.CircleToCircle(centerA, radiusA, centerB, radiusB);
+                        var result = CollisionDetector.CircleToCircle(bodyA.Position, radiusA, bodyB.Position, radiusB);
 
                         if (result.IsColliding)
                         {
-                            velocities[i] *= -1;
-                            velocities[j] *= -1;
+                            ImpulseResolver.ResolveCollision(bodyA, bodyB, result);
 
-                            // Moving the circles apart based on the penetration depth.
-                            var correction = result.Normal * result.PenetrationDepth / 2;
-                            Canvas.SetLeft(shapeA, Canvas.GetLeft(shapeA) + correction.X);
-                            Canvas.SetTop(shapeA, Canvas.GetTop(shapeA) + correction.Y);
-                            Canvas.SetLeft(shapeB, Canvas.GetLeft(shapeB) - correction.X);
-                            Canvas.SetTop(shapeB, Canvas.GetTop(shapeB) - correction.Y);
+                            // Small position correction
+                            var fix = result.Normal * 0.5;
+                            bodyA.Position -= fix;
+                            bodyB.Position += fix;
+
+                            // Update visual positions
+                            Canvas.SetLeft(shapeA, bodyA.Position.X - radiusA);
+                            Canvas.SetTop(shapeA, bodyA.Position.Y - radiusA);
+                            Canvas.SetLeft(shapeB, bodyB.Position.X - radiusB);
+                            Canvas.SetTop(shapeB, bodyB.Position.Y - radiusB);
                         }
                     }
                 }

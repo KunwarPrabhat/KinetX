@@ -23,8 +23,8 @@ namespace KinetX.Collision
 
                 result.PenetrationDepth = RadiiSum - DistanceBetweenCentres; //to find penetration depth.
 
-                result.Normal = DistanceBetweenCentres == 0 ? new Vector2D(1, 0) : VectorDifference / DistanceBetweenCentres;
-                //(VectorDifference / DistanceBetweenCentres) Dividing a vector by its magnitude gives you the unit vector in that direction — a normalized direction vector.
+                result.Normal = Vector2D.Normal(centerA, centerB);
+
                 result.ContactPoint = centerA + result.Normal * radiusA;
             }
             return result;
