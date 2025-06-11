@@ -31,8 +31,11 @@ But every line of code teaches me something I’ve always wanted to know.
   - Implements geometric detection of overlapping circles using distance checking between centers.
   - Uses a `Vector2D` structure for position and direction calculations.
   - Includes collision resolution using basic position correction based on penetration depth.
-  - Current response reverses linear velocity vectors on collision (non-physical placeholder).  
-    _**Will be updated soon with impulse resolution**_
+
+- **Impulse Resolution**
+  - Calculate collision impulse using the conservation of momentum and coefficient of restitution.
+  - Adjust post-collision velocities based on object mass, velocity, and surface normal.
+  - Incorporate restitution to control elasticity (perfectly elastic to inelastic collisions).
 
 - **Movement Based on Velocity**
   - Applies linear velocity to each shape using the formula:  
@@ -49,13 +52,6 @@ But every line of code teaches me something I’ve always wanted to know.
   - Rectangle-to-Rectangle
   - Circle-to-Rectangle
   - Polygonal collision detection using SAT (Separating Axis Theorem)
-
-- **Impulse Resolution**
-  - Calculate collision impulse using the conservation of momentum and coefficient of restitution.
-  - Adjust post-collision velocities based on object mass, velocity, and surface normal.
-  - Incorporate restitution to control elasticity (perfectly elastic to inelastic collisions).
-  - Resolve interpenetration using positional correction (Baumgarte stabilization).
-  - Future plan: Add angular velocity and rotational response for non-point-mass bodies.
 
 - **Gravity**
   - Apply a constant downward acceleration to simulate Earth-like gravity.
