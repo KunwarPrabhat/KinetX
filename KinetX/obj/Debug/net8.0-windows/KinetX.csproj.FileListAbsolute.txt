@@ -20,3 +20,4 @@ C:\Users\rkpra\Desktop\KinetX\KinetX\obj\Debug\net8.0-windows\ref\KinetX.dll
 C:\Users\rkpra\Desktop\KinetX\KinetX\obj\Debug\net8.0-windows\KinetX.csproj.AssemblyReference.cache
 C:\Users\rkpra\Desktop\KinetX\KinetX\bin\Debug\net8.0-windows\CommunityToolkit.Mvvm.dll
 C:\Users\rkpra\Desktop\KinetX\KinetX\obj\Debug\net8.0-windows\KinetX.csproj.Up2Date
+C:\Users\rkpra\Desktop\KinetX\KinetX\obj\Debug\net8.0-windows\KinetX.sourcelink.json
