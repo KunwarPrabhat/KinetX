@@ -191,7 +191,7 @@
                                             <TextBlock Text="{Binding ElementName=ObjectACountSlider, Path=Value, StringFormat={}{0:0}}" 
                                                 Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider x:Name="ObjectACountSlider" Minimum="1" Maximum="20" Value="5" 
+                                        <Slider x:Name="ObjectACountSlider" Minimum="1" Maximum="30" Value="10" 
                                                 TickFrequency="1" IsSnapToTickEnabled="True" Margin="0 0 0 10"/>
 
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
@@ -199,7 +199,7 @@
                                             <TextBlock Text="{Binding ElementName=ObjectBCountSlider, Path=Value, StringFormat={}{0:0}}" 
                                                 Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider x:Name="ObjectBCountSlider" Minimum="1" Maximum="20" Value="5" 
+                                        <Slider x:Name="ObjectBCountSlider" Minimum="1" Maximum="30" Value="10" 
                                                 TickFrequency="1" IsSnapToTickEnabled="True" Margin="0 0 0 10"/>
 
                                         <!-- Restitution Sliders with Value Display -->
@@ -208,7 +208,7 @@
                                             <TextBlock Text="{Binding ElementName=RestitutionASlider, Path=Value, StringFormat={}{0:0.0}}" 
                                                  Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider x:Name="RestitutionASlider" Minimum="0" Maximum="1" Value="0.5" 
+                                        <Slider x:Name="RestitutionASlider" Minimum="0" Maximum="1" Value="1" 
                                                 TickFrequency="0.1" Margin="0 0 0 10"/>
 
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
@@ -216,7 +216,7 @@
                                             <TextBlock Text="{Binding ElementName=RestitutionBSlider, Path=Value, StringFormat={}{0:0.0}}" 
                                                    Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
                                         </StackPanel>
-                                        <Slider x:Name="RestitutionBSlider" Minimum="0" Maximum="1" Value="0.5" 
+                                        <Slider x:Name="RestitutionBSlider" Minimum="0" Maximum="1" Value="1" 
                                                     TickFrequency="0.1" Margin="0 0 0 10"/>
 
                                         <!-- Velocity Inputs -->
@@ -224,32 +224,49 @@
                                             <StackPanel Margin="0 0 20 0">
                                                 <Label Content="Velocity A (X, Y): m/s" Foreground="White"/>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Name="VelocityAX" Width="60" Margin="0 0 5 0"/>
-                                                    <TextBox Name="VelocityAY" Width="60"/>
+                                                    <TextBox Name="VelocityAX" Width="60" Text="110" Margin="0 0 5 0"/>
+                                                    <TextBox Name="VelocityAY" Width="60" Text="125"/>
                                                 </StackPanel>
                                             </StackPanel>
 
                                             <StackPanel>
                                                 <Label Content="Velocity B (X, Y): m/s" Foreground="White"/>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBox Name="VelocityBX" Width="60" Margin="0 0 5 0"/>
-                                                    <TextBox Name="VelocityBY" Width="60"/>
+                                                    <TextBox Name="VelocityBX" Width="60" Text="90" Margin="0 0 5 0"/>
+                                                    <TextBox Name="VelocityBY" Width="60" Text="115"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
-
+    
                                         <!-- Mass Inputs -->
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                             <StackPanel Margin="0 0 20 0">
                                                 <Label Content="Mass A (Kg)" Foreground="White"/>
-                                                <TextBox x:Name="MassA" Width="60"/>
+                                                <TextBox x:Name="MassA" Width="60" Text="10"/>
                                             </StackPanel>
 
                                             <StackPanel>
                                                 <Label Content="Mass B (Kg)" Foreground="White"/>
-                                                <TextBox x:Name="MassB" Width="60"/>
+                                                <TextBox x:Name="MassB" Width="60" Text="10"/>
                                             </StackPanel>
                                         </StackPanel>
+                    
+                                        <!-- Scaling factor -->
+                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                            <Label Content="Scaling Factor (Object A):" Foreground="White"/>
+                                            <TextBlock Text="{Binding ElementName=ScaleASlider, Path=Value, StringFormat={}{0:0.0}x}" 
+                                                Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <Slider x:Name="ScaleASlider" Minimum="1" Maximum="2" Value="1" 
+                                                TickFrequency="0.1" Margin="0 0 0 10" />
+
+                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                            <Label Content="Scaling Factor (Object B):" Foreground="White"/>
+                                            <TextBlock Text="{Binding ElementName=ScaleBSlider, Path=Value, StringFormat={}{0:0.0}x}" 
+                                                 Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <Slider x:Name="ScaleBSlider" Minimum="1" Maximum="2" Value="1" 
+                                                  TickFrequency="0.1" Margin="0 0 0 10" />
 
                                         <!-- Collide Button -->
                                         <Button x:Name="CollideButton" Content="Collide" HorizontalAlignment="Stretch" Margin="0 10 0 0" 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1f3d2f6dae4e7f26c32c0c7eccd5051864f33d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86ba0e51be00f65a0c8fc68bb87c8836d38d3813")]
 [assembly: System.Reflection.AssemblyProductAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

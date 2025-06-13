@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿#pragma warning disable CS8632 //I was fed up with the warnings.
+#nullable disable
+using System.Windows;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -6,7 +8,6 @@ using System.Windows.Shapes;
 using KinetX.Calculation;
 using KinetX.Collision;
 using KinetX.Objects;
-using System.Printing;
 
 namespace KinetX
 {
@@ -19,8 +20,6 @@ namespace KinetX
         {
             InitializeComponent();
             CompositionTarget.Rendering += Animate;
-            CollideButton.Click += CollideButton_Click;
-
         }
         private void CollideButton_Click(object sender, RoutedEventArgs e)
         {
@@ -28,9 +27,23 @@ namespace KinetX
             MainCanvas.Children.Clear();
             objects.Clear();
 
-            //It reads shape types
-            string shapeA = ((ComboBoxItem)ObjectAComboBox.SelectedItem).Content.ToString();
-            string shapeB = ((ComboBoxItem)ObjectBComboBox.SelectedItem).Content.ToString();
+            //To get the shape from the combobox.
+            ComboBoxItem? itemA = ObjectAComboBox.SelectedItem as ComboBoxItem;
+            ComboBoxItem? itemB = ObjectBComboBox.SelectedItem as ComboBoxItem;
+
+            //Handling Null execption.
+            if (itemA?.Content is not string shapeA || itemB?.Content is not string shapeB)
+            //A fashionable way to  cast itemA.Content to a string and, if successful, assigns it to shapeA & same to shapeB (C#9 things):
+            {
+                MessageBox.Show("Please select both shapes before continuing.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            //this is throwing null reference warning so we are using diff method to get the shape up above.
+            //string shapeA = ((ComboBoxItem)ObjectAComboBox.SelectedItem!).Content.ToString();
+            //string shapeB = ((ComboBoxItem)ObjectBComboBox.SelectedItem!).Content.ToString(); 
+            //string shapeA = itemA.Content.ToString();
+            //string shapeB = itemB.Content.ToString();
 
 
             //It reads the Restitution of both the objects.
@@ -38,26 +51,38 @@ namespace KinetX
             double restitutionB = RestitutionBSlider.Value;
 
 
+            //It reads velocities, if The entered value is other than number the if block becomes true and throws a message.
+            if (!double.TryParse(VelocityAX.Text, out double ax) ||
+                !double.TryParse(VelocityAY.Text, out double ay) ||
+                !double.TryParse(VelocityBX.Text, out double bx) ||
+                !double.TryParse(VelocityBY.Text, out double by))
+            {
+                MessageBox.Show("Please enter valid numeric values for all velocity fields.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             //It reads mass of both the objects
-            double MassOfA = double.Parse(MassA.Text);
-            double MassOfB = double.Parse(MassB.Text);
-
-            //It reads velocities
-            double ax = double.Parse(VelocityAX.Text);
-            double ay = double.Parse(VelocityAY.Text);
-
-            double bx = double.Parse(VelocityBX.Text);
-            double by = double.Parse(VelocityBY.Text);
+            if (!double.TryParse(MassA.Text, out double MassOfA) ||
+               !double.TryParse(MassB.Text, out double MassOfB))
+            {
+                MessageBox.Show("Please enter valid numeric values for the Mass fields.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             //It reads object counts
             int ObjectACount = (int)ObjectACountSlider.Value;
             int ObjectBCount = (int)ObjectBCountSlider.Value;
 
+            //It will read the scaling factor
+            double ScaleA = ScaleASlider.Value;
+            double ScaleB = ScaleBSlider.Value;
+
+
 
             for (int i = 0; i < ObjectACount; i++)
             {
                 //for creating shapes 
-                var objA = CreateShape(shapeA);
+                var objA = CreateShape(shapeA, ScaleA);
 
                 //Random start position
                 RandomSpawn(objA, MainCanvas);
@@ -80,7 +105,7 @@ namespace KinetX
             //same goes for Object B as well.
             for (int i = 0; i < ObjectBCount; i++)
             {
-                var objB = CreateShape(shapeB);
+                var objB = CreateShape(shapeB, ScaleB);
 
                 RandomSpawn(objB, MainCanvas);
 
@@ -91,7 +116,7 @@ namespace KinetX
 
                 var body = new Body(
                     new Vector2D(centerX, centerY), //this is the position of the physical object.
-                    new Vector2D(ax, ay), //and this is the velocity of the physisal object.
+                    new Vector2D(bx, by), //and this is the velocity of the physisal object.
                     MassOfB,
                     restitutionB
                 );
@@ -121,7 +146,7 @@ namespace KinetX
             isAnimating = false;
             CompositionTarget.Rendering -= Animate;
         }
-        private Shape CreateShape(string type)
+        private Shape CreateShape(string type, double ScalingFactor)
         {
             Shape shape;
 
@@ -134,8 +159,8 @@ namespace KinetX
                 shape = new Rectangle();
             }
 
-            shape.Width = 60;
-            shape.Height = 60;
+            shape.Width = 60*ScalingFactor;
+            shape.Height = 60*ScalingFactor;
             Color randomColor = GenerateSoftColor();
             shape.Fill = new SolidColorBrush(randomColor);
             return shape;
@@ -259,6 +284,34 @@ namespace KinetX
                             Canvas.SetTop(shapeA, bodyA.Position.Y - radiusA);
                             Canvas.SetLeft(shapeB, bodyB.Position.X - radiusB);
                             Canvas.SetTop(shapeB, bodyB.Position.Y - radiusB);
+                        }
+                    }
+                    if (shapeA is Rectangle && shapeB is Rectangle)
+                    {
+                        // Get the top-left position directly from the canvas
+                        Vector2D positionA = new Vector2D(Canvas.GetLeft(shapeA), Canvas.GetTop(shapeA));
+                        Vector2D positionB = new Vector2D(Canvas.GetLeft(shapeB), Canvas.GetTop(shapeB));
+
+                        Vector2D sizeA = new Vector2D(shapeA.Width, shapeA.Height);
+                        Vector2D sizeB = new Vector2D(shapeB.Width, shapeB.Height);
+
+                        var result = CollisionDetector.AABBCollision(positionA, sizeA, positionB, sizeB);
+
+                        if (result.IsColliding)
+                        {
+                            // Resolve collision using impulse resolver
+                            ImpulseResolver.ResolveCollision(bodyA, bodyB, result);
+
+                            // Correct positions to prevent sticking
+                            var fix = result.Normal * result.PenetrationDepth * 0.5; // Use penetration depth for accurate correction
+                            bodyA.Position -= fix;
+                            bodyB.Position += fix;
+
+                            // Update visual positions based on corrected body positions
+                            Canvas.SetLeft(shapeA, bodyA.Position.X - shapeA.Width / 2);
+                            Canvas.SetTop(shapeA, bodyA.Position.Y - shapeA.Height / 2);
+                            Canvas.SetLeft(shapeB, bodyB.Position.X - shapeB.Width / 2);
+                            Canvas.SetTop(shapeB, bodyB.Position.Y - shapeB.Height / 2);
                         }
                     }
                 }
