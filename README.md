@@ -32,6 +32,10 @@ But every line of code teaches me something I’ve always wanted to know.
   - Uses a `Vector2D` structure for position and direction calculations.
   - Includes collision resolution using basic position correction based on penetration depth.
 
+- **AABB (Axis-Aligned Bounding Box) Collision Detection**
+  - Detects collisions between rectangular objects aligned with world axes.
+  - Uses Impulse Resolution for Calculating normals and penetrationDepth for more realistic bounce off.
+  
 - **Impulse Resolution**
   - Calculate collision impulse using the conservation of momentum and coefficient of restitution.
   - Adjust post-collision velocities based on object mass, velocity, and surface normal.
