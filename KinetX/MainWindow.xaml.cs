@@ -197,7 +197,7 @@ namespace KinetX
 
         private void Animate(object sender, EventArgs e)
         {
-            double rate = 5.5f;
+            double rate = 8f;
             double deltaTime = stopwatch.Elapsed.TotalSeconds;
             stopwatch.Restart();
             if (!isAnimating) return;
