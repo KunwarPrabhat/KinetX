@@ -275,7 +275,7 @@ namespace KinetX
                             ImpulseResolver.ResolveCollision(bodyA, bodyB, result);
 
                             // Small position correction
-                            var fix = result.Normal * 0.5;
+                            var fix = result.Normal* result.PenetrationDepth * 0.5;
                             bodyA.Position -= fix;
                             bodyB.Position += fix;
 
@@ -289,8 +289,9 @@ namespace KinetX
                     if (shapeA is Rectangle && shapeB is Rectangle)
                     {
                         // Get the top-left position directly from the canvas
-                        Vector2D positionA = new Vector2D(Canvas.GetLeft(shapeA), Canvas.GetTop(shapeA));
-                        Vector2D positionB = new Vector2D(Canvas.GetLeft(shapeB), Canvas.GetTop(shapeB));
+                        Vector2D positionA = bodyA.Position - new Vector2D(shapeA.Width / 2, shapeA.Height / 2);
+                        Vector2D positionB = bodyB.Position - new Vector2D(shapeB.Width / 2, shapeB.Height / 2);
+
 
                         Vector2D sizeA = new Vector2D(shapeA.Width, shapeA.Height);
                         Vector2D sizeB = new Vector2D(shapeB.Width, shapeB.Height);
@@ -312,6 +313,94 @@ namespace KinetX
                             Canvas.SetTop(shapeA, bodyA.Position.Y - shapeA.Height / 2);
                             Canvas.SetLeft(shapeB, bodyB.Position.X - shapeB.Width / 2);
                             Canvas.SetTop(shapeB, bodyB.Position.Y - shapeB.Height / 2);
+                        }
+                    }
+                    if (shapeA is Ellipse && shapeB is Rectangle || shapeA is Rectangle && shapeB is Ellipse)
+                    {
+                        if (shapeA is Ellipse && shapeB is Rectangle)
+                        {
+                            double radiusA = shapeA.Width / 2;
+
+                            // Get rectangle bounds correctly
+                            // Assuming bodyB.Position is the center of the rectangle
+                            double halfWidth = shapeB.Width / 2;
+                            double halfHeight = shapeB.Height / 2;
+
+                            Vector2D bottomLeft = new Vector2D(
+                                bodyB.Position.X - halfWidth,
+                                bodyB.Position.Y - halfHeight
+                            );
+                            Vector2D topRight = new Vector2D(
+                                bodyB.Position.X + halfWidth,
+                                bodyB.Position.Y + halfHeight
+                            );
+
+                            var result = CollisionDetector.CircleToAABBCollision(bodyA.Position, radiusA, bottomLeft, topRight);
+
+                            if (result.IsColliding)
+                            {
+                                result.Normal = new Vector2D(-result.Normal.X, -result.Normal.Y);
+
+                                // Apply position correction first (before impulse resolution)
+                                double correctionPercent = 0.4;
+                                double slop = 0.02; 
+
+                                double correctionMagnitude = Math.Max(result.PenetrationDepth - slop, 0.0) * correctionPercent;
+                                Vector2D correction = result.Normal * correctionMagnitude;
+
+                                // Since normal now points from A to B (circle to rectangle), we need:
+                                bodyA.Position -= correction * 0.5;  // Circle moves opposite to normal (away from rectangle)
+                                bodyB.Position += correction * 0.5;  // Rectangle moves along normal (away from circle)
+
+                                ImpulseResolver.ResolveCollision(bodyA, bodyB, result);
+
+                                Canvas.SetLeft(shapeA, bodyA.Position.X - shapeA.Width / 2);
+                                Canvas.SetTop(shapeA, bodyA.Position.Y - shapeA.Height / 2);
+                                Canvas.SetLeft(shapeB, bodyB.Position.X - shapeB.Width / 2);
+                                Canvas.SetTop(shapeB, bodyB.Position.Y - shapeB.Height / 2);
+                            }
+                        }
+                        else // Rectangle is A, Ellipse is B
+                        {
+                            double radiusB = shapeB.Width / 2;
+
+                            // Get rectangle bounds correctly
+                            double halfWidth = shapeA.Width / 2;
+                            double halfHeight = shapeA.Height / 2;
+
+                            Vector2D bottomLeft = new Vector2D(
+                                bodyA.Position.X - halfWidth,
+                                bodyA.Position.Y - halfHeight
+                            );
+                            Vector2D topRight = new Vector2D(
+                                bodyA.Position.X + halfWidth,
+                                bodyA.Position.Y + halfHeight
+                            );
+
+                            var result = CollisionDetector.CircleToAABBCollision(bodyB.Position, radiusB, bottomLeft, topRight);
+
+                            if (result.IsColliding)
+                            {
+
+                                double correctionPercent = 0.4; 
+                                double slop = 0.02; 
+
+                                double correctionMagnitude = Math.Max(result.PenetrationDepth - slop, 0.0) * correctionPercent;
+                                Vector2D correction = result.Normal * correctionMagnitude;
+
+                                // Apply correction: move A away from B, move B away from A  
+                                bodyA.Position -= correction * 0.5;  // Rectangle moves opposite to normal
+                                bodyB.Position += correction * 0.5;  // Circle moves along normal
+
+                                // Resolve collision impulse
+                                ImpulseResolver.ResolveCollision(bodyA, bodyB, result);
+
+                                // Update visual positions
+                                Canvas.SetLeft(shapeA, bodyA.Position.X - shapeA.Width / 2);
+                                Canvas.SetTop(shapeA, bodyA.Position.Y - shapeA.Height / 2);
+                                Canvas.SetLeft(shapeB, bodyB.Position.X - shapeB.Width / 2);
+                                Canvas.SetTop(shapeB, bodyB.Position.Y - shapeB.Height / 2);
+                            }
                         }
                     }
                 }

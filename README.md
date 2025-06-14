@@ -35,7 +35,14 @@ But every line of code teaches me something I’ve always wanted to know.
 - **AABB (Axis-Aligned Bounding Box) Collision Detection**
   - Detects collisions between rectangular objects aligned with world axes.
   - Uses Impulse Resolution for Calculating normals and penetrationDepth for more realistic bounce off.
-  
+
+- **Circle to AABB Collision detection**
+  - Implemented circle to AABB collision detection and impulse resolution as well.
+  - Geometric Detection: Detects collisions between circular and axis-aligned rectangular objects.
+  - Distance Calculation: Computes the shortest distance between the circle's center and the AABB's edges.
+  - Collision Resolution: Implements impulse resolution to adjust velocities based on collision normals and penetration depths.
+  - Code Example: Utilizes vector mathematics for precise collision detection and response.
+
 - **Impulse Resolution**
   - Calculate collision impulse using the conservation of momentum and coefficient of restitution.
   - Adjust post-collision velocities based on object mass, velocity, and surface normal.
@@ -52,11 +59,6 @@ But every line of code teaches me something I’ve always wanted to know.
 
 ## 🛠️ Stuff I’m Working On
 
-- **Other Collision Types**
-  - Rectangle-to-Rectangle
-  - Circle-to-Rectangle
-  - Polygonal collision detection using SAT (Separating Axis Theorem)
-
 - **Gravity**
   - Apply a constant downward acceleration to simulate Earth-like gravity.
   - Add mass-based gravitational attraction between objects (Newton’s law of universal gravitation).
@@ -69,13 +71,14 @@ But every line of code teaches me something I’ve always wanted to know.
   - Maintain particle spacing to mimic soft-body or jelly-like behavior.
   - Suitable for basic fluid blobs, water surface simulation, or gelatinous interactions.
 
+- **Something Crazy that might come to my mind**
 
 ##  Tools I'm Using
 
 -  **Language**: C#
 -  **Canvas**: WPF (Windows Presentation Foundation — sounds fancier than it is)
 -  **Math**: My own `Vector2D` and collision structs for simlified calculations.
--  No game engine, no physics libraries. Just code.
+-   Not using any physics libraries or any game engine.
 
 
 
@@ -98,6 +101,7 @@ Click the "Fork" button at the top right of this GitHub page.
    Add your code, test it locally, and make sure everything works.
    ```
 4. Commit and Push.
+
 5. Open Pull request.
    ```
    Go to your fork on GitHub and click "Compare & pull request". Describe what you did, and submit it.

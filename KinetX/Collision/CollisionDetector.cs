@@ -17,7 +17,14 @@ namespace KinetX.Collision
             double RadiiSum = radiusA + radiusB;
 
             //checking for collision
+
             if(SqDistance < RadiiSum * RadiiSum )
+               
+                //if You're thinking why are we using squared values than normally comparing the distance between the circles to the sum of the radius
+                //We are actually using a clever Optimization technique to minimize computation by doing Math.sqrt only when collision is happening.
+                //Imagine it this way , we have 500 circles and only 100 of them is colliding at a frame so instead of doing Math.sqrt for 500 times 
+                //we are just doing it for 100 circles and that saves a whole lot of computation.
+                
             {
                 result.IsColliding = true;
                 double DistanceBetweenCentres = Math.Sqrt(SqDistance); //Actual distance between centers.
@@ -54,6 +61,7 @@ namespace KinetX.Collision
                 Vector2D normal = new Vector2D(0,0);
                 if (overlapX < overlapY)
                 {
+                    //finding penetration depth here.
                     result.PenetrationDepth = overlapX;
 
                     if (topLeftA.X < topLeftB.X)
@@ -67,6 +75,7 @@ namespace KinetX.Collision
                 }
                 else
                 {
+                    //and here.
                     result.PenetrationDepth = overlapY;
                     // Collision is more on the Y-axis (top or bottom)
                     if (topLeftA.Y < topLeftB.Y)
@@ -80,6 +89,7 @@ namespace KinetX.Collision
                 }
                 result.Normal = normal;
 
+                //contact point
                 result.ContactPoint = new Vector2D(
                    Math.Max(topLeftA.X, topLeftB.X) + overlapX / 2,
                    Math.Max(topLeftA.Y, topLeftB.Y) + overlapY / 2
@@ -87,5 +97,82 @@ namespace KinetX.Collision
             }
             return result;
         }
+        public static double Clamp(double value, double min, double max)
+        {
+
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
+        }
+
+
+        public static CollisionResult CircleToAABBCollision(Vector2D center, double radius, Vector2D bottomLeft, Vector2D topRight)
+        {
+            var result = new CollisionResult();
+
+            // Step 1: Clamp circle center to AABB to get closest point on rectangle
+            double closestX = Clamp(center.X, bottomLeft.X, topRight.X);
+            double closestY = Clamp(center.Y, bottomLeft.Y, topRight.Y);
+
+            // Step 2: Vector from closest point to circle center
+            double dx = center.X - closestX;
+            double dy = center.Y - closestY;
+            double distanceSquared = dx * dx + dy * dy;
+            double radiusSquared = radius * radius;
+
+            if (distanceSquared <= radiusSquared)
+            {
+                result.IsColliding = true;
+
+                // Step 3: Special case — Circle center is inside the rectangle
+                if (distanceSquared < 1e-6) // Use small epsilon instead of exact zero
+                {
+                    // Find smallest distance to any AABB edge from circle center
+                    double left = center.X - bottomLeft.X;
+                    double right = topRight.X - center.X;
+                    double bottom = center.Y - bottomLeft.Y;
+                    double top = topRight.Y - center.Y;
+
+                    double minDist = Math.Min(Math.Min(left, right), Math.Min(bottom, top));
+
+                    if (minDist == left)
+                    {
+                        result.Normal = new Vector2D(-1, 0);    // Push left (out of rectangle)
+                        result.PenetrationDepth = radius + left;
+                    }
+                    else if (minDist == right)
+                    {
+                        result.Normal = new Vector2D(1, 0);     // Push right (out of rectangle)
+                        result.PenetrationDepth = radius + right;
+                    }
+                    else if (minDist == bottom)
+                    {
+                        result.Normal = new Vector2D(0, -1);    // Push down (out of rectangle)
+                        result.PenetrationDepth = radius + bottom;
+                    }
+                    else // top
+                    {
+                        result.Normal = new Vector2D(0, 1);     // Push up (out of rectangle)
+                        result.PenetrationDepth = radius + top;
+                    }
+
+                    // Contact point is on the rectangle surface in the direction of the normal
+                    result.ContactPoint = new Vector2D(closestX, closestY);
+                }
+                else
+                {
+                    // Step 4: Circle is partially outside rectangle (standard case)
+                    double distance = Math.Sqrt(distanceSquared);
+                    result.PenetrationDepth = radius - distance;
+
+                    // Normal points from rectangle surface to circle center (outward from rectangle)
+                    result.Normal = new Vector2D(dx / distance, dy / distance);
+                    result.ContactPoint = new Vector2D(closestX, closestY);
+                }
+            }
+            return result;
+        }
+
+
     }
 }
