@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\rkpra\\Desktop\\KinetX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\collision\\collisiondetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\collision\\collisiondetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\collision\\collisionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 250,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +50,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml",
               "RelativeDocumentMoniker": "KinetX\\MainWindow.xaml",
@@ -74,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ImpulseResolver.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\ImpulseResolver.cs",
               "RelativeDocumentMoniker": "KinetX\\Calculation\\ImpulseResolver.cs",
@@ -82,8 +82,7 @@
               "RelativeToolTip": "KinetX\\Calculation\\ImpulseResolver.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAiwBoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T20:09:04.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T20:09:04.604Z"
             },
             {
               "$type": "Document",
@@ -111,25 +110,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "CollisionDetector.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Collision\\CollisionDetector.cs",
               "RelativeDocumentMoniker": "KinetX\\Collision\\CollisionDetector.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Collision\\CollisionDetector.cs",
               "RelativeToolTip": "KinetX\\Collision\\CollisionDetector.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAcwIwAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAcwJQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T16:28:12.476Z"
+              "WhenOpened": "2025-06-11T16:28:12.476Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "KinetX\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "KinetX\\MainWindow.xaml.cs*",
-              "ViewState": "AgIAALUAAAAAAAAAAAAiwMcAAAAbAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs",
+              "RelativeToolTip": "KinetX\\MainWindow.xaml.cs",
+              "ViewState": "AgIAANYAAAAAAAAAAAAAAMkAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-09T18:15:04.678Z",
               "EditorCaption": ""
