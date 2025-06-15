@@ -1,114 +1,143 @@
-﻿<Window x:Class="KinetX.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="KinetX - Physics Engine"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip"
-        WindowState="Maximized"
-        WindowStyle="SingleBorderWindow"
-        Width="1280"
-        Height="720"
-        Background="#0d1b2a">
+﻿<Window
+    x:Class="KinetX.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="KinetX - Physics Engine"
+    Width="1280"
+    Height="720"
+    Background="#0d1b2a"
+    ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    WindowStyle="SingleBorderWindow">
 
     <Window.Resources>
-        <!-- Label Style -->
+        <!--  Label Style  -->
         <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#E0E0E0"/>
-            <Setter Property="Margin" Value="0 8 0 4"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#E0E0E0" />
+            <Setter Property="Margin" Value="0,8,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        <DropShadowEffect x:Key="DropShadowEffect"
-                  Color="Black"
-                  BlurRadius="10"
-                  ShadowDepth="5"
-                  Opacity="0.5"/>
-        <!-- TextBox Style -->
-        <Style x:Key="InputBoxStyle" TargetType="TextBox">
-            <Setter Property="Padding" Value="8,6"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="BorderBrush" Value="#555555"/>
-            <Setter Property="BorderThickness" Value="1.5"/>
-            <Setter Property="Background" Value="#13315c"/>
-            <Setter Property="Foreground" Value="#E0E0E0"/>
-            <Setter Property="Margin" Value="0 5 0 10"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Style x:Key="RoundedInputTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="8" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#888" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Height" Value="32" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="4"
-                        SnapsToDevicePixels="True">
-                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Button Style -->
+        <DropShadowEffect
+            x:Key="DropShadowEffect"
+            BlurRadius="10"
+            Opacity="0.5"
+            ShadowDepth="5"
+            Color="Black" />
+        <!--  TextBox Style  -->
+        <Style x:Key="InputBoxStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="#555555" />
+            <Setter Property="BorderThickness" Value="1.5" />
+            <Setter Property="Background" Value="#13315c" />
+            <Setter Property="Foreground" Value="#E0E0E0" />
+            <Setter Property="Margin" Value="0,5,0,10" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Button Style  -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Azure"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="10,6"/>
-            <Setter Property="Margin" Value="0 10 0 0"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="Azure" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Padding" Value="10,6" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                        <Border
+                            Background="{TemplateBinding Background}"
                             CornerRadius="5"
                             SnapsToDevicePixels="True">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,2"/>
+                            <ContentPresenter
+                                Margin="10,2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#ced4da"/>
+                                <Setter Property="Background" Value="#ced4da" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#6c757d"/>
+                                <Setter Property="Background" Value="#6c757d" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="#AAA"/>
-                                <Setter Property="Foreground" Value="#666"/>
-                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="Background" Value="#AAA" />
+                                <Setter Property="Foreground" Value="#666" />
+                                <Setter Property="Cursor" Value="Arrow" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- ScrollViewer Style -->
+        <!--  ScrollViewer Style  -->
         <Style x:Key="HiddenScrollViewer" TargetType="ScrollViewer">
-            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ScrollViewer">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0"/>
-                                <!-- Hides vertical scrollbar -->
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0" />
+                                <!--  Hides vertical scrollbar  -->
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="0"/>
-                                <!-- Hides horizontal scrollbar -->
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="0" />
+                                <!--  Hides horizontal scrollbar  -->
                             </Grid.RowDefinitions>
 
-                            <ScrollContentPresenter Grid.Column="0" Grid.Row="0"/>
+                            <ScrollContentPresenter Grid.Row="0" Grid.Column="0" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -118,161 +147,571 @@
     </Window.Resources>
 
     <Grid>
-        <!-- Main Layout: Canvas and Control Panel -->
+        <!--  Main Layout: Canvas and Control Panel  -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1.5*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Canvas Container -->
+        <!--  Canvas Container  -->
         <Grid>
-            <!-- Outer Border with DropShadowEffect -->
-            <Border 
-                Background="Bisque"
+            <!--  Outer Border with DropShadowEffect  -->
+            <Border
                 Margin="30"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                Background="Bisque"
                 Effect="{DynamicResource DropShadowEffect}">
                 <Canvas x:Name="MainCanvas" Background="#0b2545" />
             </Border>
         </Grid>
 
 
-        <!-- Control Panel -->
-        <Border Grid.Column="1" Background="#0d1b2a" Padding="20">
+        <!--  Control Panel  -->
+        <Border
+            Grid.Column="1"
+            Padding="20"
+            Background="#0d1b2a">
             <Grid>
-                <Border Grid.Column="1" Background="#0d1b2a" Padding="20">
+                <Border
+                    Grid.Column="1"
+                    Padding="20"
+                    Background="#0d1b2a">
                     <Grid>
-                        <Border BorderThickness="2" BorderBrush="White" CornerRadius="10" Padding="10" Margin="0">
-                            <ScrollViewer Style="{StaticResource HiddenScrollViewer}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                <StackPanel Orientation="Vertical" MinWidth="300">
+                        <Border
+                            Margin="0"
+                            Padding="10"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="10">
+                            <ScrollViewer
+                                HorizontalScrollBarVisibility="Disabled"
+                                Style="{StaticResource HiddenScrollViewer}"
+                                VerticalScrollBarVisibility="Auto">
+                                <StackPanel MinWidth="300" Orientation="Vertical">
 
-                                    <!-- SIMULATIONS SECTION -->
-                                    <StackPanel Orientation="Vertical" Margin="0 0 0 20">
-                                        <Border Background="#ced4da" CornerRadius="10" Padding="4" Margin="0 0 0 20">
-                                            <TextBlock Text="Simulations" TextAlignment="Center" FontSize="22"
-                                                FontWeight="DemiBold" Foreground="Black" FontFamily="Palatino Linotype"/>
+                                    <!--  SIMULATIONS SECTION  -->
+                                    <StackPanel Margin="0,0,0,20" Orientation="Vertical">
+                                        <Border
+                                            Margin="0,0,0,20"
+                                            Padding="4"
+                                            Background="#ced4da"
+                                            CornerRadius="10">
+                                            <TextBlock
+                                                FontFamily="Palatino Linotype"
+                                                FontSize="22"
+                                                FontWeight="DemiBold"
+                                                Foreground="Black"
+                                                Text="Simulations"
+                                                TextAlignment="Center" />
                                         </Border>
 
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 10">
-                                            <Button Content="Collision" Width="100" Style="{StaticResource PrimaryButtonStyle}" 
-                                                FontFamily="Palatino Linotype" FontSize="14" Margin="0 0 10 0"/>
-                                            <Button Content="Gravity" Width="100" Style="{StaticResource PrimaryButtonStyle}" 
-                                                FontFamily="Palatino Linotype" FontSize="14" Margin="0 0 10 0"/>
-                                            <Button Content="Projectile Motion" Width="150" Style="{StaticResource PrimaryButtonStyle}" 
-                                                FontFamily="Palatino Linotype" FontSize="14"  Margin="0 0 10 0"/>
+                                        <StackPanel
+                                            Margin="0,0,0,10"
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Button
+                                                Width="100"
+                                                Margin="0,0,10,0"
+                                                Click="Collision_Click"
+                                                Content="Collision"
+                                                FontFamily="Palatino Linotype"
+                                                FontSize="14"
+                                                Style="{StaticResource PrimaryButtonStyle}" />
+                                            <Button
+                                                Width="100"
+                                                Margin="0,0,10,0"
+                                                Click="GravityButton_Click"
+                                                Content="Gravity"
+                                                FontFamily="Palatino Linotype"
+                                                FontSize="14"
+                                                Style="{StaticResource PrimaryButtonStyle}" />
+                                            <Button
+                                                Width="150"
+                                                Margin="0,0,10,0"
+                                                Content="Projectile Motion"
+                                                FontFamily="Palatino Linotype"
+                                                FontSize="14"
+                                                Style="{StaticResource PrimaryButtonStyle}" />
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <!-- COLLISION SETTINGS SECTION -->
-                                    <StackPanel Margin="0 10 0 0">
-                                        <TextBlock Text="Collision Settings" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0 0 0 10"/>
+                                    <Grid
+                                        Name="SettingsContainer"
+                                        Height="Auto"
+                                        ClipToBounds="True">
+                                        <!--  COLLISION SETTINGS SECTION  -->
+                                        <Border
+                                            x:Name="CollisionSettingsBorder"
+                                            Margin="0,10,0,0"
+                                            Padding="25"
+                                            Background="#AA1A1A1A"
+                                            CornerRadius="15"
+                                            Visibility="Visible">
+                                            <StackPanel x:Name="CollisionSettingsPanel">
 
-                                        <!-- Object Selection -->
-                                        <Label Content="Select Object A:" Foreground="White"/>
-                                        <ComboBox x:Name="ObjectAComboBox" Margin="0 0 0 10">
-                                            <ComboBoxItem>Circle</ComboBoxItem>
-                                            <ComboBoxItem>Square</ComboBoxItem>
-                                            <!--<ComboBoxItem>polygon</ComboBoxItem>
-                                            <ComboBoxItem>Triangle</ComboBoxItem>-->
-                                        </ComboBox>
+                                                <!--  Header  -->
+                                                <TextBlock
+                                                    Margin="0,0,0,25"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="24"
+                                                    FontWeight="Bold"
+                                                    Foreground="#FF8C00"
+                                                    Text="💥 Collision Settings" />
 
-                                        <Label Content="Select Object B:" Foreground="White"/>
-                                        <ComboBox x:Name="ObjectBComboBox" Margin="0 0 0 10">
-                                            <ComboBoxItem>Circle</ComboBoxItem>
-                                            <ComboBoxItem>Square</ComboBoxItem>
-                                            <!--<ComboBoxItem>polygon</ComboBoxItem>
-                                            <ComboBoxItem>Triangle</ComboBoxItem>-->
-                                        </ComboBox>
+                                                <!--  Object A  -->
+                                                <TextBlock
+                                                    Padding="5"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🅰️ Select Object A:" />
+                                                <ComboBox
+                                                    x:Name="ObjectAComboBox"
+                                                    Height="35"
+                                                    Margin="0,0,0,15"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="14">
+                                                    <ComboBoxItem>Circle</ComboBoxItem>
+                                                    <ComboBoxItem>Square</ComboBoxItem>
+                                                </ComboBox>
 
-                                        <!-- Object Count Sliders -->
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Number of Object A:" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=ObjectACountSlider, Path=Value, StringFormat={}{0:0}}" 
-                                                Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="ObjectACountSlider" Minimum="1" Maximum="30" Value="10" 
-                                                TickFrequency="1" IsSnapToTickEnabled="True" Margin="0 0 0 10"/>
+                                                <!--  Object B  -->
+                                                <TextBlock
+                                                    Padding="5"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🅱️ Select Object B:" />
+                                                <ComboBox
+                                                    x:Name="ObjectBComboBox"
+                                                    Height="35"
+                                                    Margin="0,0,0,20"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="14">
+                                                    <ComboBoxItem>Circle</ComboBoxItem>
+                                                    <ComboBoxItem>Square</ComboBoxItem>
+                                                </ComboBox>
 
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Number of Object B:" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=ObjectBCountSlider, Path=Value, StringFormat={}{0:0}}" 
-                                                Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="ObjectBCountSlider" Minimum="1" Maximum="30" Value="10" 
-                                                TickFrequency="1" IsSnapToTickEnabled="True" Margin="0 0 0 10"/>
+                                                <Separator Margin="0,0,0,20" />
 
-                                        <!-- Restitution Sliders with Value Display -->
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Restitution (Object A):" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=RestitutionASlider, Path=Value, StringFormat={}{0:0.0}}" 
-                                                 Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="RestitutionASlider" Minimum="0" Maximum="1" Value="1" 
-                                                TickFrequency="0.1" Margin="0 0 0 10"/>
-
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Restitution (Object B):" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=RestitutionBSlider, Path=Value, StringFormat={}{0:0.0}}" 
-                                                   Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="RestitutionBSlider" Minimum="0" Maximum="1" Value="1" 
-                                                    TickFrequency="0.1" Margin="0 0 0 10"/>
-
-                                        <!-- Velocity Inputs -->
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <StackPanel Margin="0 0 20 0">
-                                                <Label Content="Velocity A (X, Y): m/s" Foreground="White"/>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBox Name="VelocityAX" Width="60" Text="110" Margin="0 0 5 0"/>
-                                                    <TextBox Name="VelocityAY" Width="60" Text="125"/>
+                                                <!--  Object A Count  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🔢 Number of Object A:" />
+                                                <StackPanel Margin="0,0,0,15" Orientation="Horizontal">
+                                                    <Slider
+                                                        x:Name="ObjectACountSlider"
+                                                        Width="200"
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="30"
+                                                        Minimum="1"
+                                                        TickFrequency="1"
+                                                        Value="10" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=ObjectACountSlider, Path=Value, StringFormat={}{0:0}}" />
                                                 </StackPanel>
-                                            </StackPanel>
 
-                                            <StackPanel>
-                                                <Label Content="Velocity B (X, Y): m/s" Foreground="White"/>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBox Name="VelocityBX" Width="60" Text="90" Margin="0 0 5 0"/>
-                                                    <TextBox Name="VelocityBY" Width="60" Text="115"/>
+                                                <!--  Object B Count  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🔢 Number of Object B:" />
+                                                <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
+                                                    <Slider
+                                                        x:Name="ObjectBCountSlider"
+                                                        Width="200"
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="30"
+                                                        Minimum="1"
+                                                        TickFrequency="1"
+                                                        Value="10" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=ObjectBCountSlider, Path=Value, StringFormat={}{0:0}}" />
                                                 </StackPanel>
-                                            </StackPanel>
-                                        </StackPanel>
-    
-                                        <!-- Mass Inputs -->
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <StackPanel Margin="0 0 20 0">
-                                                <Label Content="Mass A (Kg)" Foreground="White"/>
-                                                <TextBox x:Name="MassA" Width="60" Text="10"/>
-                                            </StackPanel>
 
-                                            <StackPanel>
-                                                <Label Content="Mass B (Kg)" Foreground="White"/>
-                                                <TextBox x:Name="MassB" Width="60" Text="10"/>
+                                                <Separator Margin="0,0,0,20" />
+
+                                                <!--  Restitution A  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🧱 Restitution (Object A):" />
+                                                <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                                                    <Slider
+                                                        x:Name="RestitutionASlider"
+                                                        Width="200"
+                                                        Maximum="1"
+                                                        Minimum="0"
+                                                        TickFrequency="0.1"
+                                                        Value="1" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=RestitutionASlider, Path=Value, StringFormat={}{0:0.0}}" />
+                                                </StackPanel>
+                                                <TextBlock
+                                                    Margin="0,0,0,15"
+                                                    FontSize="12"
+                                                    Foreground="#CCCCCC"
+                                                    Text="Bounciness of Object A (0 = no bounce, 1 = fully elastic)." />
+
+                                                <!--  Restitution B  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="🧱 Restitution (Object B):" />
+                                                <StackPanel Margin="0,0,0,5" Orientation="Horizontal">
+                                                    <Slider
+                                                        x:Name="RestitutionBSlider"
+                                                        Width="200"
+                                                        Maximum="1"
+                                                        Minimum="0"
+                                                        TickFrequency="0.1"
+                                                        Value="1" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=RestitutionBSlider, Path=Value, StringFormat={}{0:0.0}}" />
+                                                </StackPanel>
+                                                <TextBlock
+                                                    Margin="0,0,0,20"
+                                                    FontSize="12"
+                                                    Foreground="#CCCCCC"
+                                                    Text="Bounciness of Object B (0 = no bounce, 1 = fully elastic)." />
+
+                                                <Separator Margin="0,0,0,20" />
+
+                                                <!--  Velocity Section  -->
+                                                <TextBlock
+                                                    Margin="0,0,0,10"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="💨 Initial Velocities (X, Y)" />
+
+                                                <Grid Margin="0,0,0,20">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <!--  🔹 Object A  -->
+                                                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                                        <TextBlock
+                                                            Margin="0,0,0,5"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="White"
+                                                            Text="Object A" />
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBox
+                                                                Name="VelocityAX"
+                                                                Width="60"
+                                                                Margin="0,0,5,0"
+                                                                Padding="4"
+                                                                Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                                Text="110" />
+                                                            <TextBox
+                                                                Name="VelocityAY"
+                                                                Width="60"
+                                                                Padding="4"
+                                                                Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                                Text="125" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+
+                                                    <!--  🔹 Object B  -->
+                                                    <StackPanel Grid.Row="1">
+                                                        <TextBlock
+                                                            Margin="0,0,0,5"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="White"
+                                                            Text="Object B" />
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBox
+                                                                Name="VelocityBX"
+                                                                Width="60"
+                                                                Margin="0,0,5,0"
+                                                                Padding="4"
+                                                                Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                                Text="90" />
+                                                            <TextBox
+                                                                Name="VelocityBY"
+                                                                Width="60"
+                                                                Padding="4"
+                                                                Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                                Text="115" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+
+                                                <Separator Margin="0,0,0,20" />
+
+                                                <!--  🔹 Mass Section  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="⚖️ Mass (Kg)" />
+
+                                                <Grid Margin="0,0,0,20">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="60" />
+                                                        <ColumnDefinition Width="40" />
+                                                        <!--  Spacer  -->
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="60" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!--  Object A  -->
+                                                    <TextBlock
+                                                        Grid.Column="0"
+                                                        Margin="0,0,5,0"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="White"
+                                                        Text="Object A" />
+                                                    <TextBox
+                                                        x:Name="MassA"
+                                                        Grid.Column="1"
+                                                        Width="60"
+                                                        Padding="4"
+                                                        Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                        Text="10" />
+
+                                                    <!--  Object B  -->
+                                                    <TextBlock
+                                                        Grid.Column="3"
+                                                        Margin="0,0,5,0"
+                                                        VerticalAlignment="Center"
+                                                        Foreground="White"
+                                                        Text="Object B" />
+                                                    <TextBox
+                                                        x:Name="MassB"
+                                                        Grid.Column="4"
+                                                        Width="60"
+                                                        Padding="4"
+                                                        Style="{StaticResource RoundedInputTextBoxStyle}"
+                                                        Text="10" />
+                                                </Grid>
+
+                                                <Separator Margin="0,0,0,20" />
+
+                                                <!--  Scale  -->
+                                                <TextBlock
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Foreground="White"
+                                                    Text="📏 Scale Factor" />
+                                                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,10,0"
+                                                        Foreground="White"
+                                                        Text="Object A:" />
+                                                    <Slider
+                                                        x:Name="ScaleASlider"
+                                                        Width="120"
+                                                        Maximum="2"
+                                                        Minimum="1"
+                                                        TickFrequency="0.1"
+                                                        Value="1" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=ScaleASlider, Path=Value, StringFormat={}{0:0.0}x}" />
+                                                </StackPanel>
+                                                <StackPanel Margin="0,0,0,25" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Margin="0,0,10,0"
+                                                        Foreground="White"
+                                                        Text="Object B:" />
+                                                    <Slider
+                                                        x:Name="ScaleBSlider"
+                                                        Width="120"
+                                                        Maximum="2"
+                                                        Minimum="1"
+                                                        TickFrequency="0.1"
+                                                        Value="1" />
+                                                    <TextBlock
+                                                        Margin="10,0"
+                                                        Foreground="White"
+                                                        Text="{Binding ElementName=ScaleBSlider, Path=Value, StringFormat={}{0:0.0}x}" />
+                                                </StackPanel>
+
+                                                <Separator Margin="0,0,0,25" />
+
+                                                <!--  Collide Button  -->
+                                                <Button
+                                                    x:Name="CollideButton"
+                                                    Width="150"
+                                                    Height="40"
+                                                    Margin="0,10,0,0"
+                                                    HorizontalAlignment="Center"
+                                                    Click="CollideButton_Click"
+                                                    Content="💣 Collide!"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Style="{StaticResource PrimaryButtonStyle}" />
                                             </StackPanel>
-                                        </StackPanel>
-                    
-                                        <!-- Scaling factor -->
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Scaling Factor (Object A):" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=ScaleASlider, Path=Value, StringFormat={}{0:0.0}x}" 
-                                                Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="ScaleASlider" Minimum="1" Maximum="2" Value="1" 
-                                                TickFrequency="0.1" Margin="0 0 0 10" />
+                                        </Border>
 
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Label Content="Scaling Factor (Object B):" Foreground="White"/>
-                                            <TextBlock Text="{Binding ElementName=ScaleBSlider, Path=Value, StringFormat={}{0:0.0}x}" 
-                                                 Foreground="White" Margin="5 0 0 0" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <Slider x:Name="ScaleBSlider" Minimum="1" Maximum="2" Value="1" 
-                                                  TickFrequency="0.1" Margin="0 0 0 10" />
 
-                                        <!-- Collide Button -->
-                                        <Button x:Name="CollideButton" Content="Collide" HorizontalAlignment="Stretch" Margin="0 10 0 0" 
-                                                Style="{StaticResource PrimaryButtonStyle}"
-                                                Click="CollideButton_Click"/>
-                                    </StackPanel>
+
+                                        <!--  Gravity Settings Panel  -->
+                                        <Border
+                                            x:Name="GravitySettingsBorder"
+                                            Margin="0,10,0,0"
+                                            Padding="30"
+                                            Background="#AA1A1A1A"
+                                            CornerRadius="15"
+                                            Visibility="Collapsed">
+                                            <StackPanel
+                                                x:Name="GravitySettingsPanel"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top">
+
+                                                <!--  Header  -->
+                                                <TextBlock
+                                                    Margin="0,0,0,20"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="26"
+                                                    FontWeight="Bold"
+                                                    Foreground="#00BFFF"
+                                                    Text="⚙️ Gravity Settings" />
+
+                                                <!--  Gravity  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="White"
+                                                        Text="🌍 Gravity (m/s²):" />
+                                                    <TextBox
+                                                        x:Name="GravityInput"
+                                                        Width="200"
+                                                        Background="#222"
+                                                        BorderBrush="#00BFFF"
+                                                        BorderThickness="1"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="9.8" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#CCCCCC"
+                                                        Text="Defines the gravitational pull. Higher values = faster falling." />
+                                                </StackPanel>
+
+                                                <!--  Mass  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="White"
+                                                        Text="⚖️ Mass (kg):" />
+                                                    <TextBox
+                                                        x:Name="MassInput"
+                                                        Width="200"
+                                                        Background="#222"
+                                                        BorderBrush="#00BFFF"
+                                                        BorderThickness="1"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="1.0" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#CCCCCC"
+                                                        Text="Mass affects force calculations and response to gravity." />
+                                                </StackPanel>
+
+                                                <!--  Initial Velocity  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="White"
+                                                        Text="💨 Initial Velocity Y:" />
+                                                    <TextBox
+                                                        x:Name="VelocityYInput"
+                                                        Width="200"
+                                                        Background="#222"
+                                                        BorderBrush="#00BFFF"
+                                                        BorderThickness="1"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="0.0" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#CCCCCC"
+                                                        Text="Starting upward/downward motion. Positive = downwards." />
+                                                </StackPanel>
+
+                                                <!--  Time Step  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="White"
+                                                        Text="⏱ Time Step (Δt):" />
+                                                    <TextBox
+                                                        x:Name="TimeStepInput"
+                                                        Width="200"
+                                                        Background="#222"
+                                                        BorderBrush="#00BFFF"
+                                                        BorderThickness="1"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="0.016" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#CCCCCC"
+                                                        Text="Simulation resolution. Lower = smoother physics, more CPU." />
+                                                </StackPanel>
+
+                                                <!--  Damping  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
+                                                        Foreground="White"
+                                                        Text="🧯 Damping Factor:" />
+                                                    <TextBox
+                                                        x:Name="DampingInput"
+                                                        Width="200"
+                                                        Background="#222"
+                                                        BorderBrush="#00BFFF"
+                                                        BorderThickness="1"
+                                                        FontSize="14"
+                                                        Foreground="White"
+                                                        Text="0.99" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#CCCCCC"
+                                                        Text="Reduces velocity over time to simulate air resistance." />
+                                                </StackPanel>
+
+                                                <!--  Apply Button  -->
+                                                <Button
+                                                    x:Name="ApplyGravitySettingsButton"
+                                                    Width="160"
+                                                    Margin="0,25,0,0"
+                                                    HorizontalAlignment="Center"
+                                                    Content="Apply Settings"
+                                                    Style="{StaticResource PrimaryButtonStyle}" />
+                                            </StackPanel>
+                                        </Border>
+
+                                    </Grid>
                                 </StackPanel>
                             </ScrollViewer>
                         </Border>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e349a719a83337df98b84ae63c84ee13d4a60289")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45dd5e72fa6f94ae84f1227dfa6035ae61050f9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KinetX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

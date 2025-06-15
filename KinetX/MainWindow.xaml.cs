@@ -8,11 +8,36 @@ using System.Windows.Shapes;
 using KinetX.Calculation;
 using KinetX.Collision;
 using KinetX.Objects;
+using System.Reflection;
 
 namespace KinetX
 {
     public partial class MainWindow : Window
     {
+        private void ShowPanel(Border panelToShow)
+        {
+            foreach (var child in SettingsContainer.Children)
+            {
+                if (child is Border border)
+                {
+                    if (border != panelToShow)
+                        border.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            panelToShow.Visibility = Visibility.Visible;
+
+        }
+
+        private void GravityButton_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPanel(GravitySettingsBorder);
+        }
+        private void Collision_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPanel(CollisionSettingsBorder);
+        }
+
         private Stopwatch stopwatch = new Stopwatch();
         private List<(Shape visual, Body physics)> objects = new List<(Shape, Body)>();
         private bool isAnimating = false;
@@ -23,6 +48,7 @@ namespace KinetX
         }
         private void CollideButton_Click(object sender, RoutedEventArgs e)
         {
+
             stopwatch.Start();
             MainCanvas.Children.Clear();
             objects.Clear();
