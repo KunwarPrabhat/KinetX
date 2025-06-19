@@ -8,12 +8,25 @@ using System.Windows.Shapes;
 using KinetX.Calculation;
 using KinetX.Collision;
 using KinetX.Objects;
-using System.Reflection;
-
+using KinetX.Gravitation;
+    
 namespace KinetX
 {
     public partial class MainWindow : Window
     {
+        private Stopwatch stopwatch = new Stopwatch();
+        private List<(Shape visual, Body physics)> objects = new List<(Shape, Body)>();
+        private bool isAnimating = false;
+
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            CompositionTarget.Rendering += Animate;
+        }
+
+
+
         private void ShowPanel(Border panelToShow)
         {
             foreach (var child in SettingsContainer.Children)
@@ -28,27 +41,38 @@ namespace KinetX
             panelToShow.Visibility = Visibility.Visible;
 
         }
+        
 
-        private void GravityButton_Click(object sender, RoutedEventArgs e)
+        private void Gravity_Click(object sender, RoutedEventArgs e)
         {
             ShowPanel(GravitySettingsBorder);
+            MainCanvas.Children.Clear();
+            objects.Clear();
+
+            PaintCanvas.paint(MainCanvas, 350);
         }
+        private void GravityButton_Click(object sender, RoutedEventArgs e)
+        {
+            CompositionTarget.Rendering -= AnimateGravity.Animate;
+            AnimateGravity.GetInfo(MainCanvas);
+            CompositionTarget.Rendering += AnimateGravity.Animate;
+
+        }
+
+
+
         private void Collision_Click(object sender, RoutedEventArgs e)
         {
             ShowPanel(CollisionSettingsBorder);
+            MainCanvas.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#0b2545"));
+            MainCanvas.Children.Clear();
+            objects.Clear();
+
         }
 
-        private Stopwatch stopwatch = new Stopwatch();
-        private List<(Shape visual, Body physics)> objects = new List<(Shape, Body)>();
-        private bool isAnimating = false;
-        public MainWindow()
-        {
-            InitializeComponent();
-            CompositionTarget.Rendering += Animate;
-        }
+
         private void CollideButton_Click(object sender, RoutedEventArgs e)
         {
-
             stopwatch.Start();
             MainCanvas.Children.Clear();
             objects.Clear();
@@ -213,20 +237,10 @@ namespace KinetX
 
             return Color.FromRgb(r, g, b);
         }
-        //We have to do the following now.
-        //  For each shape:
-        //- Get current position
-        //- Add velocity
-        //- Check if it hits wall
-        //- If yes, reverse velocity
-        //- Set new position
-
-
 
         private void Animate(object sender, EventArgs e)
         {
             double deltaTime = stopwatch.Elapsed.TotalSeconds;
-            //stopwatch.Restart();
 
             //Adding something experimental
             int substeps = 8;

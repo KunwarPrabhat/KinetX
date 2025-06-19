@@ -155,7 +155,6 @@
 
         <!--  Canvas Container  -->
         <Grid>
-            <!--  Outer Border with DropShadowEffect  -->
             <Border
                 Margin="30"
                 HorizontalAlignment="Stretch"
@@ -221,7 +220,7 @@
                                             <Button
                                                 Width="100"
                                                 Margin="0,0,10,0"
-                                                Click="GravityButton_Click"
+                                                Click="Gravity_Click"
                                                 Content="Gravity"
                                                 FontFamily="Palatino Linotype"
                                                 FontSize="14"
@@ -706,6 +705,7 @@
                                                     Width="160"
                                                     Margin="0,25,0,0"
                                                     HorizontalAlignment="Center"
+                                                    Click="GravityButton_Click"
                                                     Content="Apply Settings"
                                                     Style="{StaticResource PrimaryButtonStyle}" />
                                             </StackPanel>
