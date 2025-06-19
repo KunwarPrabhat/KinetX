@@ -9,7 +9,7 @@ namespace KinetX.Gravitation
     public class Solver
     {
         private readonly Canvas canvas;
-        private Vector2D gravity = new Vector2D(0f, 1f);
+        private Vector2D gravity = new Vector2D(0f, 800f);
         private List<VerletObject> objects;
 
         public Solver(List<VerletObject> objects, Canvas canvas)
