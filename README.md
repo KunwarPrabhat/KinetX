@@ -55,15 +55,29 @@ But every line of code teaches me something I’ve always wanted to know.
   - Edge handling includes boundary detection and velocity inversion on hitting canvas edges.
   - Time-based updates ensure frame-rate independent motion for smoother simulation.
 
+- **Gravity** 
+  - Simulates real-world gravitational pull by applying a constant downward force to all objects.
+  - Works seamlessly with Verlet integration for smooth motion without explicitly tracking velocity.
+  - Gravity is applied per frame, affecting each object's position over time.
+  - The system supports a large number of particles due to its simplicity and stability.
+  - Fully integrated into the physics update cycle alongside constraint solving and collision detection.
+  - Part of a modular 2D physics engine framework that also handles user-defined object parameters like mass and shape.
+  - Supports dynamic adjustment of gravity direction or strength if extended.
+
+-**Spatial Hashing Collision Detection**
+  - Optimizes collision detection by drastically reducing the number of object pairs that need to be checked (from O(n²) to near O(n)).
+  - The 2D space is divided into uniform grid cells based on object radius, and objects are hashed into these cells using their position.
+  - Each object only checks for collisions against others in the same or neighboring cells, avoiding unnecessary comparisons.
+  - Perfect for handling thousands of dynamic particles or objects with minimal CPU overhead.
+  - Scales well with increasing object count; performance remains stable even with over 4000 objects.
+  - Implemented with a dictionary-based spatial hash map for fast lookups and insertions.
+  - Works seamlessly with circular collision bounds using a pre-defined `radius`.
+  - Fully integrates with the engine’s physics loop and supports dynamic objects moving across cells.
+  - Lays the groundwork for more advanced optimization like region activation or hierarchical grids.
+  - Achieved 5000 + objects rendring at real time.
 ---
-
-## 🛠️ Stuff I’m Working On
-
-- **Gravity**
-  - Apply a constant downward acceleration to simulate Earth-like gravity.
-  - Add mass-based gravitational attraction between objects (Newton’s law of universal gravitation).
-  - Include toggles for global vs. object-specific gravity.
-  - Future support for custom gravity vectors and planetary simulation.
+ 
+## 🛠️ Stuff to work on in future.
 
 - **Fluid Simulation**
   - Implement a basic particle-based pseudo-fluid system.

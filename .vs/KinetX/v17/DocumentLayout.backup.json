@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\rkpra\\Desktop\\KinetX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\gravitation\\animategravity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\gravitation\\animategravity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,12 +11,28 @@
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\gravitation\\solver.cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\gravitation\\animategravity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\gravitation\\animategravity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\gravitation\\verletobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\gravitation\\verletobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\gravitation\\paintcanvas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\gravitation\\paintcanvas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\collision\\collisionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\collision\\collisionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\calculation\\vector2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +43,8 @@
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\calculation\\body.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\collision\\collisiondetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\collision\\collisiondetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\calculation\\impulseresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|c:\\users\\rkpra\\desktop\\kinetx\\kinetx\\collision\\collisionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42F6B319-893C-4A27-AE00-1F9191384534}|KinetX\\KinetX.csproj|solutionrelative:kinetx\\collision\\collisionresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 250,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -76,64 +76,66 @@
               "RelativeDocumentMoniker": "KinetX\\Gravitation\\VerletObject.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\VerletObject.cs",
               "RelativeToolTip": "KinetX\\Gravitation\\VerletObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-19T17:49:37.734Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "solver.cs.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\solver.cs.cs",
               "RelativeDocumentMoniker": "KinetX\\Gravitation\\solver.cs.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\solver.cs.cs",
               "RelativeToolTip": "KinetX\\Gravitation\\solver.cs.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswBIAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-19T15:26:34.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AnimateGravity.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\AnimateGravity.cs",
               "RelativeDocumentMoniker": "KinetX\\Gravitation\\AnimateGravity.cs",
-              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\AnimateGravity.cs*",
-              "RelativeToolTip": "KinetX\\Gravitation\\AnimateGravity.cs*",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAmwH0AAAAnAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\AnimateGravity.cs",
+              "RelativeToolTip": "KinetX\\Gravitation\\AnimateGravity.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAgwKsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T18:47:51.716Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PaintCanvas.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\PaintCanvas.cs",
               "RelativeDocumentMoniker": "KinetX\\Gravitation\\PaintCanvas.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Gravitation\\PaintCanvas.cs",
               "RelativeToolTip": "KinetX\\Gravitation\\PaintCanvas.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwBYAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T18:13:58.168Z"
+              "WhenOpened": "2025-06-16T18:13:58.168Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Body.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\Body.cs",
               "RelativeDocumentMoniker": "KinetX\\Calculation\\Body.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\Body.cs",
               "RelativeToolTip": "KinetX\\Calculation\\Body.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T20:25:31.116Z"
+              "WhenOpened": "2025-06-11T20:25:31.116Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 6,
               "Title": "ImpulseResolver.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\ImpulseResolver.cs",
               "RelativeDocumentMoniker": "KinetX\\Calculation\\ImpulseResolver.cs",
@@ -141,11 +143,12 @@
               "RelativeToolTip": "KinetX\\Calculation\\ImpulseResolver.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAiwBoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T20:09:04.604Z"
+              "WhenOpened": "2025-06-11T20:09:04.604Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
               "Title": "CollisionResult.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Collision\\CollisionResult.cs",
               "RelativeDocumentMoniker": "KinetX\\Collision\\CollisionResult.cs",
@@ -153,23 +156,25 @@
               "RelativeToolTip": "KinetX\\Collision\\CollisionResult.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T15:57:04.297Z"
+              "WhenOpened": "2025-06-11T15:57:04.297Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Vector2D.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\Vector2D.cs",
               "RelativeDocumentMoniker": "KinetX\\Calculation\\Vector2D.cs",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Calculation\\Vector2D.cs",
               "RelativeToolTip": "KinetX\\Calculation\\Vector2D.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA4wBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T13:31:26.498Z"
+              "WhenOpened": "2025-06-11T13:31:26.498Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "CollisionDetector.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\Collision\\CollisionDetector.cs",
               "RelativeDocumentMoniker": "KinetX\\Collision\\CollisionDetector.cs",
@@ -181,24 +186,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml",
               "RelativeDocumentMoniker": "KinetX\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml",
               "RelativeToolTip": "KinetX\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-09T20:12:22.134Z"
+              "WhenOpened": "2025-06-09T20:12:22.134Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "KinetX\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs",
-              "RelativeToolTip": "KinetX\\MainWindow.xaml.cs",
-              "ViewState": "AgIAANsAAAAAAAAAAAAAwOwAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\rkpra\\Desktop\\KinetX\\KinetX\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "KinetX\\MainWindow.xaml.cs*",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwDkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-09T18:15:04.678Z",
               "EditorCaption": ""

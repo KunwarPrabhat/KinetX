@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CS8632 
+#nullable disable
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Shapes;
@@ -7,6 +9,7 @@ using KinetX.Calculation;
 using KinetX.Gravitation;
 using static KinetX.Gravitation.Solver;
 using System.Diagnostics;
+using System.Windows;
 
 namespace KinetX.Gravitation
 {
@@ -14,10 +17,15 @@ namespace KinetX.Gravitation
     {
         private static Stopwatch stopwatch = new Stopwatch();
         private static double lastSpawnTime = 0;
-        private static double spawnInterval = 0.1;
+        //private static double spawnInterval = 0.1;
 
-        private static int totalBallsToSpawn = 50; 
-        private static double diameter = 40;
+        private static double diameter;
+        private static double spawnInterval;
+        private static double Gravity;
+        private static double objSize;
+
+        private static int totalBallsToSpawn = 244; 
+        //private static double diameter = 40;
 
         private static List<VerletObject> verletObjects = new List<VerletObject>();
         private static List<VerletObject> spawnQueue = new List<VerletObject>();
@@ -25,12 +33,18 @@ namespace KinetX.Gravitation
         private static Canvas canvas;
         private static Solver solver;
 
-        public static void GetInfo(Canvas targetCanvas)
+        public static void GetInfo(Canvas targetCanvas, double numberOfBalls, double ballSize, double spawnTime, double gravityStrength, double SpeedMultiplier)
         {
             canvas = targetCanvas;
-
             stopwatch.Restart();
             lastSpawnTime = 0;
+            objSize = ballSize;
+
+
+            diameter = ballSize*2;
+            spawnInterval = spawnTime/SpeedMultiplier;
+            Gravity = gravityStrength;
+
 
             spawnQueue.Clear();
             verletObjects.Clear();
@@ -40,7 +54,7 @@ namespace KinetX.Gravitation
                 canvas.ActualHeight / 2
             );
 
-            for (int i = 0; i < totalBallsToSpawn; i++)
+            for (int i = 0; i < numberOfBalls; i++)
             {
                 VerletObject obj = new VerletObject
                 {
@@ -55,7 +69,7 @@ namespace KinetX.Gravitation
             canvas.Children.Clear();
             PaintCanvas.paint(canvas, ConstraintSettings.Radius);
 
-            solver = new Solver(verletObjects, canvas);
+            solver = new Solver(verletObjects, canvas, gravityStrength);
         }
 
         public static void Animate(object sender, EventArgs e)
@@ -82,7 +96,8 @@ namespace KinetX.Gravitation
 
             for (int i = 0; i < subSteps; i++)
             {
-                solver.Update(dt);
+                solver.Update(dt, objSize);
+
             }
 
             // Update visuals
@@ -94,7 +109,11 @@ namespace KinetX.Gravitation
                 Canvas.SetTop(circle, obj.position_current.Y - radius);
             }
         }
+        public static void StopAnimation()
+        {
+            CompositionTarget.Rendering -= Animate;
 
+        }
         private static Ellipse CreateCircle(double diameter)
         {
             Color baseColor1 = GenerateSoftColor();
@@ -138,6 +157,17 @@ namespace KinetX.Gravitation
             }
 
             return Color.FromRgb(r, g, b);
+        }
+        public static void ClearBalls()
+        {
+            foreach (var obj in verletObjects)
+            {
+                if (obj.Visual is UIElement element && canvas.Children.Contains(element))
+                {
+                    canvas.Children.Remove(element);
+                }
+            }
+            verletObjects.Clear();
         }
 
 

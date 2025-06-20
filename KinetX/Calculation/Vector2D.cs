@@ -14,6 +14,7 @@ namespace KinetX.Calculation
         public static Vector2D operator -(Vector2D a, Vector2D b) => new Vector2D(a.X - b.X, a.Y - b.Y);
         public static Vector2D operator *(Vector2D a, double d) => new Vector2D(a.X * d, a.Y * d);
         public static Vector2D operator /(Vector2D a, double d) => new Vector2D(a.X / d, a.Y / d);
+        public static Vector2D operator *(double d, Vector2D a) => new Vector2D(a.X * d, a.Y * d);
 
         public double MagnitudeSquared() => X * X + Y * Y;
         public double Magnitude() => Math.Sqrt(MagnitudeSquared());

@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS8632 //I was fed up with the warnings.
+﻿#pragma warning disable CS8632 
 #nullable disable
 using System.Windows;
 using System.Diagnostics;
@@ -17,14 +17,19 @@ namespace KinetX
         private Stopwatch stopwatch = new Stopwatch();
         private List<(Shape visual, Body physics)> objects = new List<(Shape, Body)>();
         private bool isAnimating = false;
+       
 
 
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
             CompositionTarget.Rendering += Animate;
         }
-
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MaxAllowedText.Text = $"Max allowed: {maxAllowedBalls}";
+        }
 
 
         private void ShowPanel(Border panelToShow)
@@ -41,10 +46,51 @@ namespace KinetX
             panelToShow.Visibility = Visibility.Visible;
 
         }
-        
+
+        private const double ConstraintArea = 384845; //Calculated using π × 350² where radius is fixed 350.
+        private int maxAllowedBalls = 230; //global declaration.
+
+        private void BallSizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int radius = (int)BallSizeSlider.Value;
+            int roughArea = (int)(ConstraintArea / (Math.PI * radius * radius));
+
+            double Efficiency = 0.84;
+            maxAllowedBalls = (int)(roughArea * Efficiency);
+            ValidateBallCount();
+        }
+        private void BallCountInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateBallCount();
+        }
+        private void ValidateBallCount()
+        {
+            if (BallCountInput == null || MaxAllowedText == null)
+                return;
+            if (int.TryParse(BallCountInput.Text, out int userCount))
+            {
+                if (userCount > maxAllowedBalls)
+                {
+                    BallCountInput.BorderBrush = Brushes.Red;
+                    MaxAllowedText.Text = $"⚠️ Max allowed: {maxAllowedBalls}. Reduce or your CPU will fry.";
+                }
+                else
+                {
+                    BallCountInput.BorderBrush = Brushes.DeepSkyBlue;
+                    MaxAllowedText.Text = $"Max allowed: {maxAllowedBalls}";
+                }
+            }
+            else
+            {
+                BallCountInput.BorderBrush = Brushes.OrangeRed;
+                MaxAllowedText.Text = "⚠️ Invalid input!";
+            }
+        }
+
 
         private void Gravity_Click(object sender, RoutedEventArgs e)
         {
+            StopAnimation();
             ShowPanel(GravitySettingsBorder);
             MainCanvas.Children.Clear();
             objects.Clear();
@@ -53,16 +99,40 @@ namespace KinetX
         }
         private void GravityButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!double.TryParse(BallCountInput.Text, out double NumberOfBall))
+            {
+                MessageBox.Show("Please enter valid numeric values for the Count field.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if(NumberOfBall > maxAllowedBalls)
+            {
+                MessageBox.Show("Please enter valid numeric values for the Count field.", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            double SpeedAnimation = SpeedSlider.Value;
+
+            double BallSize = BallSizeSlider.Value;
+
+            double SpawnTime = SpawnTimeSlider.Value;
+
+            double GravityStrength = GravityStrengthSlider.Value;
+
             CompositionTarget.Rendering -= AnimateGravity.Animate;
-            AnimateGravity.GetInfo(MainCanvas);
+            AnimateGravity.GetInfo(MainCanvas, NumberOfBall, BallSize, SpawnTime, GravityStrength, SpeedAnimation);
             CompositionTarget.Rendering += AnimateGravity.Animate;
 
         }
 
-
+        private void BreakAnimationButton_Click(Object sender, RoutedEventArgs e)
+        {
+            AnimateGravity.StopAnimation();
+            AnimateGravity.ClearBalls();
+        }
 
         private void Collision_Click(object sender, RoutedEventArgs e)
         {
+            AnimateGravity.StopAnimation();
             ShowPanel(CollisionSettingsBorder);
             MainCanvas.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#0b2545"));
             MainCanvas.Children.Clear();

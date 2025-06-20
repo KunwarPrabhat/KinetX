@@ -27,7 +27,7 @@
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="#888" />
-            <Setter Property="Background" Value="White" />
+            <Setter Property="Background" Value="FloralWhite" />
             <Setter Property="Height" Value="32" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -57,7 +57,7 @@
             <Setter Property="BorderBrush" Value="#555555" />
             <Setter Property="BorderThickness" Value="1.5" />
             <Setter Property="Background" Value="#13315c" />
-            <Setter Property="Foreground" Value="#E0E0E0" />
+            <Setter Property="Foreground" Value="FloralWhite" />
             <Setter Property="Margin" Value="0,5,0,10" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -80,7 +80,7 @@
 
         <!--  Button Style  -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Azure" />
+            <Setter Property="Background" Value="FloralWhite" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Padding" Value="10,6" />
@@ -192,15 +192,16 @@
                                     <!--  SIMULATIONS SECTION  -->
                                     <StackPanel Margin="0,0,0,20" Orientation="Vertical">
                                         <Border
-                                            Margin="0,0,0,20"
-                                            Padding="4"
-                                            Background="#ced4da"
-                                            CornerRadius="10">
+                                            Margin="10"
+                                            Padding="2"
+                                            Background="FloralWhite"
+                                            CornerRadius="14">
                                             <TextBlock
+                                                HorizontalAlignment="Center"
                                                 FontFamily="Palatino Linotype"
-                                                FontSize="22"
-                                                FontWeight="DemiBold"
-                                                Foreground="Black"
+                                                FontSize="26"
+                                                FontWeight="Bold"
+                                                Foreground="OrangeRed"
                                                 Text="Simulations"
                                                 TextAlignment="Center" />
                                         </Border>
@@ -225,13 +226,13 @@
                                                 FontFamily="Palatino Linotype"
                                                 FontSize="14"
                                                 Style="{StaticResource PrimaryButtonStyle}" />
-                                            <Button
+                                            <!--<Button
                                                 Width="150"
                                                 Margin="0,0,10,0"
                                                 Content="Projectile Motion"
                                                 FontFamily="Palatino Linotype"
                                                 FontSize="14"
-                                                Style="{StaticResource PrimaryButtonStyle}" />
+                                                Style="{StaticResource PrimaryButtonStyle}" />-->
                                         </StackPanel>
                                     </StackPanel>
 
@@ -267,7 +268,7 @@
                                                     Text="🅰️ Select Object A:" />
                                                 <ComboBox
                                                     x:Name="ObjectAComboBox"
-                                                    Height="35"
+                                                    Height="25"
                                                     Margin="0,0,0,15"
                                                     FontFamily="Segoe UI"
                                                     FontSize="14">
@@ -284,7 +285,7 @@
                                                     Text="🅱️ Select Object B:" />
                                                 <ComboBox
                                                     x:Name="ObjectBComboBox"
-                                                    Height="35"
+                                                    Height="25"
                                                     Margin="0,0,0,20"
                                                     FontFamily="Segoe UI"
                                                     FontSize="14">
@@ -577,7 +578,7 @@
                                             Visibility="Collapsed">
                                             <StackPanel
                                                 x:Name="GravitySettingsPanel"
-                                                HorizontalAlignment="Left"
+                                                HorizontalAlignment="Center"
                                                 VerticalAlignment="Top">
 
                                                 <!--  Header  -->
@@ -589,124 +590,155 @@
                                                     Foreground="#00BFFF"
                                                     Text="⚙️ Gravity Settings" />
 
-                                                <!--  Gravity  -->
+                                                <!--  Number of Balls  -->
                                                 <StackPanel Margin="0,10,0,20">
                                                     <TextBlock
                                                         FontSize="16"
                                                         Foreground="White"
-                                                        Text="🌍 Gravity (m/s²):" />
+                                                        Text="🔢 Number of Balls:" />
                                                     <TextBox
-                                                        x:Name="GravityInput"
+                                                        x:Name="BallCountInput"
                                                         Width="200"
                                                         Background="#222"
                                                         BorderBrush="#00BFFF"
                                                         BorderThickness="1"
                                                         FontSize="14"
                                                         Foreground="White"
-                                                        Text="9.8" />
+                                                        Text="10"
+                                                        TextChanged="BallCountInput_TextChanged" />
+                                                    <TextBlock
+                                                        x:Name="MaxAllowedText"
+                                                        Margin="0,5,0,0"
+                                                        FontSize="12"
+                                                        Foreground="#FF7777"
+                                                        Text="Max allowed: 230"
+                                                        TextAlignment="Center" />
                                                     <TextBlock
                                                         Margin="0,5,0,0"
                                                         FontSize="12"
                                                         Foreground="#CCCCCC"
-                                                        Text="Defines the gravitational pull. Higher values = faster falling." />
+                                                        Text="Total balls to spawn in the simulation." />
+
                                                 </StackPanel>
 
-                                                <!--  Mass  -->
+                                                <!--  Ball Size  -->
                                                 <StackPanel Margin="0,10,0,20">
                                                     <TextBlock
                                                         FontSize="16"
                                                         Foreground="White"
-                                                        Text="⚖️ Mass (kg):" />
-                                                    <TextBox
-                                                        x:Name="MassInput"
+                                                        Text="⚽ Ball Size (pixels):" />
+                                                    <Slider
+                                                        x:Name="BallSizeSlider"
                                                         Width="200"
-                                                        Background="#222"
-                                                        BorderBrush="#00BFFF"
-                                                        BorderThickness="1"
-                                                        FontSize="14"
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="20"
+                                                        Minimum="5"
+                                                        TickFrequency="1"
+                                                        ValueChanged="BallSizeSlider_ValueChanged"
+                                                        Value="10" />
+                                                    <TextBlock
+                                                        Margin="0,5,0,0"
+                                                        HorizontalAlignment="Center"
+                                                        FontSize="12"
+                                                        Foreground="#FF7777"
+                                                        Text="{Binding ElementName=BallSizeSlider, Path=Value, StringFormat=Selected: {0:0}px}" />
+                                                </StackPanel>
+                                                <!--  Spawn Time  -->
+                                                <StackPanel Margin="0,10,0,20">
+                                                    <TextBlock
+                                                        FontSize="16"
                                                         Foreground="White"
-                                                        Text="1.0" />
+                                                        Text="⏳ Spawn Time (Varies):" />
+                                                    <Slider
+                                                        x:Name="SpawnTimeSlider"
+                                                        Width="200"
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="1"
+                                                        Minimum="0.1"
+                                                        TickFrequency="0.1"
+                                                        Value="0.2" />
                                                     <TextBlock
                                                         Margin="0,5,0,0"
                                                         FontSize="12"
                                                         Foreground="#CCCCCC"
-                                                        Text="Mass affects force calculations and response to gravity." />
+                                                        Text="{Binding ElementName=SpawnTimeSlider, Path=Value, StringFormat=Selected: {0:0.0}}" />
                                                 </StackPanel>
 
-                                                <!--  Initial Velocity  -->
+                                                <!--  Gravity Strength  -->
                                                 <StackPanel Margin="0,10,0,20">
                                                     <TextBlock
                                                         FontSize="16"
                                                         Foreground="White"
-                                                        Text="💨 Initial Velocity Y:" />
-                                                    <TextBox
-                                                        x:Name="VelocityYInput"
+                                                        Text="🌌 Gravity Strength:" />
+                                                    <Slider
+                                                        x:Name="GravityStrengthSlider"
                                                         Width="200"
-                                                        Background="#222"
-                                                        BorderBrush="#00BFFF"
-                                                        BorderThickness="1"
-                                                        FontSize="14"
-                                                        Foreground="White"
-                                                        Text="0.0" />
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="20"
+                                                        Minimum="1"
+                                                        TickFrequency="1"
+                                                        Value="9.8" />
                                                     <TextBlock
                                                         Margin="0,5,0,0"
                                                         FontSize="12"
                                                         Foreground="#CCCCCC"
-                                                        Text="Starting upward/downward motion. Positive = downwards." />
+                                                        Text="{Binding ElementName=GravityStrengthSlider, Path=Value, StringFormat=Current: {0:0.0} m/s²}" />
                                                 </StackPanel>
 
-                                                <!--  Time Step  -->
-                                                <StackPanel Margin="0,10,0,20">
-                                                    <TextBlock
-                                                        FontSize="16"
-                                                        Foreground="White"
-                                                        Text="⏱ Time Step (Δt):" />
-                                                    <TextBox
-                                                        x:Name="TimeStepInput"
-                                                        Width="200"
-                                                        Background="#222"
-                                                        BorderBrush="#00BFFF"
-                                                        BorderThickness="1"
-                                                        FontSize="14"
-                                                        Foreground="White"
-                                                        Text="0.016" />
-                                                    <TextBlock
-                                                        Margin="0,5,0,0"
-                                                        FontSize="12"
-                                                        Foreground="#CCCCCC"
-                                                        Text="Simulation resolution. Lower = smoother physics, more CPU." />
-                                                </StackPanel>
+                                                <!--  Speed it up  -->
+                                                <StackPanel
+                                                    Width="240"
+                                                    Margin="0,25,0,0"
+                                                    HorizontalAlignment="Center"
+                                                    Orientation="Vertical">
 
-                                                <!--  Damping  -->
-                                                <StackPanel Margin="0,10,0,20">
                                                     <TextBlock
+                                                        Margin="0,0,0,12"
+                                                        HorizontalAlignment="Center"
                                                         FontSize="16"
+                                                        FontWeight="Bold"
                                                         Foreground="White"
-                                                        Text="🧯 Damping Factor:" />
-                                                    <TextBox
-                                                        x:Name="DampingInput"
+                                                        Text="⚡Speed it up" />
+
+                                                    <Slider
+                                                        x:Name="SpeedSlider"
                                                         Width="200"
-                                                        Background="#222"
-                                                        BorderBrush="#00BFFF"
-                                                        BorderThickness="1"
-                                                        FontSize="14"
-                                                        Foreground="White"
-                                                        Text="0.99" />
+                                                        IsSnapToTickEnabled="True"
+                                                        Maximum="10"
+                                                        Minimum="1"
+                                                        TickFrequency="1"
+                                                        Value="1" />
+
                                                     <TextBlock
-                                                        Margin="0,5,0,0"
-                                                        FontSize="12"
-                                                        Foreground="#CCCCCC"
-                                                        Text="Reduces velocity over time to simulate air resistance." />
+                                                        HorizontalAlignment="Center"
+                                                        FontSize="14"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#3498DB"
+                                                        Text="{Binding ElementName=SpeedSlider, Path=Value, StringFormat='{}{0}x'}" />
                                                 </StackPanel>
 
                                                 <!--  Apply Button  -->
                                                 <Button
                                                     x:Name="ApplyGravitySettingsButton"
-                                                    Width="160"
-                                                    Margin="0,25,0,0"
+                                                    Width="150"
+                                                    Height="40"
+                                                    Margin="0,10,0,0"
                                                     HorizontalAlignment="Center"
                                                     Click="GravityButton_Click"
-                                                    Content="Apply Settings"
+                                                    Content="⚙️ Apply"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
+                                                    Style="{StaticResource PrimaryButtonStyle}" />
+                                                <Button
+                                                    x:Name="BreakAnimationButton"
+                                                    Width="150"
+                                                    Height="40"
+                                                    Margin="0,10,0,0"
+                                                    HorizontalAlignment="Center"
+                                                    Click="BreakAnimationButton_Click"
+                                                    Content="⛓️‍💥 Break"
+                                                    FontFamily="Segoe UI"
+                                                    FontSize="16"
                                                     Style="{StaticResource PrimaryButtonStyle}" />
                                             </StackPanel>
                                         </Border>
